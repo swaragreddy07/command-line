@@ -1,11 +1,15 @@
 require 'httparty'
-def worddef()
+def worddef(s)
+    if s==""
     url = 'http://fourtytwowords.herokuapp.com/words/randomWord?api_key=be45adfee7c617ff1b22a4ffccdf2687a8b7f484d1fc0603388c9f5d51879871e6fa92b0cb6fa6915f86e5c59d2c815b45496db11041a065ff6339318c925201'
     response = HTTParty.get(url)
     p=response.parsed_response
     w=p["word"]
     puts("the word is :")
     puts(w)
+    else
+    w=s 
+    end
     #puts("infunction")
     url = "https://fourtytwowords.herokuapp.com/word/#{w}/definitions?api_key=be45adfee7c617ff1b22a4ffccdf2687a8b7f484d1fc0603388c9f5d51879871e6fa92b0cb6fa6915f86e5c59d2c815b45496db11041a065ff6339318c925201"
     response = HTTParty.get(url)
@@ -13,13 +17,17 @@ def worddef()
     puts(pp)
     return
 end
-def wordexample()
+def wordexample(s)
+    if s==""
     url = 'http://fourtytwowords.herokuapp.com/words/randomWord?api_key=be45adfee7c617ff1b22a4ffccdf2687a8b7f484d1fc0603388c9f5d51879871e6fa92b0cb6fa6915f86e5c59d2c815b45496db11041a065ff6339318c925201'
     response = HTTParty.get(url)
     p=response.parsed_response
     w=p["word"]
     puts("the word is:")
     puts(w)
+    else
+    w=s
+    end
     #puts("swarag reddy #{w}")
     url = "https://fourtytwowords.herokuapp.com/word/#{w}/examples?api_key=be45adfee7c617ff1b22a4ffccdf2687a8b7f484d1fc0603388c9f5d51879871e6fa92b0cb6fa6915f86e5c59d2c815b45496db11041a065ff6339318c925201"
     response = HTTParty.get(url)
@@ -27,13 +35,17 @@ def wordexample()
     puts(pp)
     return 
 end
-def synonyms(q)
+def synonyms(q,s)
+    if s==""
     url = 'http://fourtytwowords.herokuapp.com/words/randomWord?api_key=be45adfee7c617ff1b22a4ffccdf2687a8b7f484d1fc0603388c9f5d51879871e6fa92b0cb6fa6915f86e5c59d2c815b45496db11041a065ff6339318c925201'
     response = HTTParty.get(url)
     p=response.parsed_response
     w=p["word"]
     puts("the word is:")
     puts(w)
+    else
+    w=s
+    end
     url = "https://fourtytwowords.herokuapp.com/word/#{w}/relatedWords?api_key=be45adfee7c617ff1b22a4ffccdf2687a8b7f484d1fc0603388c9f5d51879871e6fa92b0cb6fa6915f86e5c59d2c815b45496db11041a065ff6339318c925201"
     response = HTTParty.get(url)
     pp=response.parsed_response
@@ -74,7 +86,7 @@ def synonyms(q)
             end
         end
     end
-    if q==2
+    if q==2 || q==5
         puts("the synonyms of the word are")
         if ss.length()==0
             puts("sorry! there are no synonyms for the word in the database")
@@ -83,7 +95,7 @@ def synonyms(q)
             puts()
         end
     end
-    if q==3
+    if q==3 || q==5
         if aa.length()==0
             puts("sorry! there are no antonyms for the word in the database")
         else
@@ -93,6 +105,20 @@ def synonyms(q)
         end
     end
 
+end
+def fulldict()
+    url = 'http://fourtytwowords.herokuapp.com/words/randomWord?api_key=be45adfee7c617ff1b22a4ffccdf2687a8b7f484d1fc0603388c9f5d51879871e6fa92b0cb6fa6915f86e5c59d2c815b45496db11041a065ff6339318c925201'
+    response = HTTParty.get(url)
+    p=response.parsed_response
+    w=p["word"]
+    puts("the word is:")
+    puts(w)
+    puts("the definition of the word is")
+    worddef(w)
+    puts("the examples of the word are")
+    wordexample(w)
+    puts("the antonyms and synonyms of the word are")
+    synonyms(5,w)
 end
 while 1
     
@@ -106,20 +132,25 @@ while 1
     q=gets.to_i
     if q==1
         puts("you will get a rondom word and its definition")
-        worddef()
+        worddef("")
     end
     if q==2
         puts("you will get a random word and its synonyms")
-        synonyms(q)
+        synonyms(q,"")
     end
     if q==4
         puts("you will get a word and examples of the word")
-        wordexample()
+        wordexample("")
     end
     if q==3
         puts("you will get the antonyms of the word")
-        synonyms(q)
+        synonyms(q,"")
     end
+    if q==5
+        puts("you will get a random word and the entire dict of the word")
+        fulldict()
+    end
+
     if q==7
         break
     end
