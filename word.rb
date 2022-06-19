@@ -1,6 +1,6 @@
 require 'httparty'
-$global_array = []
-def word_def(str)
+def word_def(str,n)
+    n=n.to_i
     if str == ""
       word = new_word
     else
@@ -12,17 +12,18 @@ def word_def(str)
     array = []
     result.each do |i|
       array.push(i['text'])
-      $global_array.push(i['text'])
     end
     rescue 
       check = 1
     end
-    if $global_array[0]!=1
+    if n == 0
       if check.zero?
         puts(array)
       else
         puts('sorry the word is not available in our database')
       end
+    else
+      return array
     end
 end
 
