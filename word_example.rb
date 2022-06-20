@@ -2,6 +2,7 @@ require 'httparty'
 def word_example(str)
     if str == ""
       word = new_word
+      puts("the word is :#{word}")
     else
       word = str
     end
