@@ -2,6 +2,7 @@ require 'httparty'
 def synonyms(str,for_word_game)
   if str == ""
     word = new_word
+    puts("the word is :#{word}")
   else
     word = str 
   end
@@ -15,10 +16,12 @@ def synonyms(str,for_word_game)
       if value == "synonym"
         start = 1
       elsif start == 1 
-        array.push(value)
+        value.each do |i|
+          array.push(i)
+        end
       end
     end
-  end    
+  end
   rescue
     check = 1
   end 
