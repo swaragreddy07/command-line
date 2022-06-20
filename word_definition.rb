@@ -1,30 +1,30 @@
 require 'httparty'
-def word_def(str,n)
-    n=n.to_i
-    if str == ""
-      word = new_word
+def word_def(str,for_word_game)
+  if str == ""
+    word = new_word
+  else
+    word = str
+  end
+  result = get_def(word)
+  check = 0
+  begin
+  array = []
+  result.each do |i|
+    array.push(i['text'])
+  end
+  rescue => error
+    puts error
+    check = 1
+  end
+  if for_word_game == 'true'
+    return array
+  else
+    if check == 0
+      puts array
     else
-      word = str
+      puts('sorry! the word does not exist in our database')
     end
-    result = get_def(word)
-    check = 0
-    begin
-    array = []
-    result.each do |i|
-      array.push(i['text'])
-    end
-    rescue 
-      check = 1
-    end
-    if n == 0
-      if check.zero?
-        puts(array)
-      else
-        puts('sorry the word is not available in our database')
-      end
-    else
-      return array
-    end
+  end
 end
 
 def get_def(word)
