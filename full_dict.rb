@@ -2,6 +2,7 @@ require 'httparty'
 def full_dict(str)
   if str == ""
     word = new_word
+    puts("the word is :#{word}")
   else
     word = str 
     end
@@ -11,7 +12,6 @@ def full_dict(str)
   word_example(word)
   puts('the synonyms of the word are:')
   synonyms(word,'false')
-  puts('the antonyms of the word are:')
   antonyms(word,'false')
 end
   
