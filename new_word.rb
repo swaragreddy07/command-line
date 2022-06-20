@@ -5,7 +5,5 @@ def new_word()
   response = HTTParty.get(url)
   result = response.parsed_response
   word = result['word']
-  puts('the word is :')
-  puts(word)
   return word
 end
