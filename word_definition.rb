@@ -2,6 +2,7 @@ require 'httparty'
 def word_def(str,for_word_game)
   if str == ""
     word = new_word
+    puts("the word is :#{word}")
   else
     word = str
   end
