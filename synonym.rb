@@ -25,11 +25,11 @@ def synonyms(str,for_word_game)
   if for_word_game == 'true'
     return array
   else
-    result(array,check)
+    result1(array,check)
   end
 end
 
-def result(array,check)
+def result1(array,check)
   if check == 1
     puts('the word does not exist in our database')
   else
