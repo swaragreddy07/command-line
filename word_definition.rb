@@ -9,19 +9,19 @@ def word_def(str,for_word_game = 'false')
   result = get_def(word)
   check = 0
   begin
-  array = []
+  definitions = []
   result.each do |i|
-    array.push(i['text'])
+    definitions.push(i['text'])
   end
   rescue => error
     puts error
     check = 1
   end
   if for_word_game == 'true'
-    return array
+    return definitions
   else
     if check == 0
-      puts array
+      puts definitions
     else
       puts('sorry! the word does not exist in our database')
     end
