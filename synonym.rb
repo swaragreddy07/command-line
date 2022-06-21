@@ -1,5 +1,5 @@
 require 'httparty'
-def synonyms(str,for_word_game)
+def synonyms(str, for_word_game = 'false')
   if str == ""
     word = new_word
     puts("the word is :#{word}")
@@ -7,37 +7,37 @@ def synonyms(str,for_word_game)
     word = str 
   end
   begin
-  check = 0
-  result = get_synonyms(word)
-  array = []
-  start = 0
-  for i in 0..result.length()-1
-    result[i].each do |key,value|
-      if value == "synonym"
-        start = 1
-      elsif start == 1 
-        value.each do |i|
-          array.push(i)
+    if_word_exist = true
+    result = get_synonyms(word)
+    synonym = []
+    start = 0
+    for i in 0..result.length() - 1
+      result[i].each do |key, value|
+        if value == "synonym"
+          start = 1
+        elsif start == 1 
+          value.each do |i|
+            synonym.push(i)
+          end
         end
       end
-    end
   end
   rescue
-    check = 1
+    if_word_exist = false
   end 
   if for_word_game == 'true'
-    return array
+    return synonym
   else
-    result1(array,check)
+    print_synonym(synonym,if_word_exist)
   end
 end
 
-def result1(array,check)
-  if check == 1
+def print_synonym(synonym, if_word_exist)
+  if if_word_exist == false
     puts('the word does not exist in our database')
   else
     puts('the synonyms of the word are:')
-    puts(array)
+    puts(synonym)
   end
   return
 end
