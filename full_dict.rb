@@ -7,11 +7,11 @@ def full_dict(str)
     word = str 
     end
   puts('the definitions of the word are:')
-  word_def(word,'false')
+  word_def(word)
   puts('the examples of the word are:')
   word_example(word)
   puts('the synonyms of the word are:')
-  synonyms(word,'false')
-  antonyms(word,'false')
+  synonyms(word)
+  antonyms(word)
 end
   
