@@ -1,5 +1,5 @@
 require 'httparty'
-def word_def(str,for_word_game)
+def word_def(str,for_word_game = 'false')
   if str == ""
     word = new_word
     puts("the word is :#{word}")
